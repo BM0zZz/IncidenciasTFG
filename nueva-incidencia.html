@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva incidencia</title>
+
+  <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo-box">
+        <div class="logo-circle"></div>
+        <div>
+          <h2>ViniloTFG Admin</h2>
+          <p>Gestión interna</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="index.html" class="nav-item">Dashboard</a>
+      <a href="pedidos.html" class="nav-item">Pedidos</a>
+      <a href="clientes.html" class="nav-item">Clientes</a>
+      <a href="#" class="nav-item">Productos</a>
+      <a href="#" class="nav-item">Estadísticas</a>
+      <a href="#" class="nav-item">Configuración</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="user-card">
+        <div class="user-avatar">V</div>
+        <div>
+          <h4>Víctor</h4>
+          <p>Administrador</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <div class="panel-header">
+      <div>
+        <h1>Nueva incidencia</h1>
+        <p>Registra una nueva incidencia en el sistema</p>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div class="panel">
+
+      <form id="formIncidencia">
+
+        <!-- GRID -->
+        <div class="form-grid">
+
+          <div>
+            <label>Cliente</label>
+            <input type="text" id="cliente" required>
+          </div>
+
+          <div>
+            <label>Pedido</label>
+            <input type="text" id="pedido" required>
+          </div>
+
+          <div>
+            <label>Tipo</label>
+            <input type="text" id="tipo" required>
+          </div>
+
+          <div>
+            <label>Prioridad</label>
+            <select id="prioridad">
+              <option>Baja</option>
+              <option>Media</option>
+              <option>Alta</option>
+              <option>Urgente</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- DESCRIPCIÓN -->
+        <div style="margin-top:20px;">
+          <label>Descripción</label>
+          <textarea id="descripcion" rows="5" required></textarea>
+        </div>
+
+        <!-- RESPONSABLE -->
+        <div style="margin-top:20px;">
+          <label>Responsable</label>
+          <input type="text" id="responsable">
+        </div>
+
+        <!-- BOTONES -->
+        <div class="form-actions">
+          <button type="submit" class="primary-btn">Guardar incidencia</button>
+          <button type="button" class="secondary-btn" onclick="window.location.href='index.html'">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

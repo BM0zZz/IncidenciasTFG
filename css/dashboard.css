@@ -1,0 +1,39 @@
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  background-color: #181b20;
+  border: 1px solid #2a2f38;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters input,
+.filters select {
+  background-color: #111315;
+  color: white;
+  border: 1px solid #2a2f38;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
