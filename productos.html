@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pedidos - ViniloTFG Admin</title>
+  <title>Productos - ViniloTFG Admin</title>
 
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/dashboard.css">
@@ -25,9 +25,9 @@
 
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
-      <a href="pedidos.html" class="nav-item active">Pedidos</a>
+      <a href="pedidos.html" class="nav-item">Pedidos</a>
       <a href="clientes.html" class="nav-item">Clientes</a>
-      <a href="productos.html" class="nav-item">Productos</a>
+      <a href="productos.html" class="nav-item active">Productos</a>
       <a href="estadisticas.html" class="nav-item">Estadísticas</a>
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
@@ -47,41 +47,41 @@
 
     <header class="topbar">
       <div>
-        <h1>Gestión de pedidos</h1>
-        <p>Consulta, filtra y revisa los pedidos registrados en la tienda</p>
+        <h1>Gestión de productos</h1>
+        <p>Consulta, filtra y revisa el catálogo de vinilos</p>
       </div>
     </header>
 
     <section class="stats-grid">
       <div class="stat-card">
         <div class="stat-info">
-          <p>Pedidos totales</p>
-          <h3>248</h3>
-          <span>+8 esta semana</span>
+          <p>Productos totales</p>
+          <h3 id="totalProductos"></h3>
+          <span>Catálogo actual</span>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-info">
-          <p>Pendientes</p>
-          <h3>17</h3>
-          <span>3 requieren revisión</span>
+          <p>Stock bajo</p>
+          <h3 id="stockBajo"></h3>
+          <span>Menos de 5 unidades</span>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-info">
-          <p>Enviados</p>
-          <h3>94</h3>
-          <span>Últimos 30 días</span>
+          <p>Sin stock</p>
+          <h3 id="sinStock"></h3>
+          <span>Productos agotados</span>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-info">
-          <p>Entregados</p>
-          <h3>131</h3>
-          <span>52,8% del total</span>
+          <p>Valor inventario</p>
+          <h3 id="valorInventario"></h3>
+          <span>Suma estimada</span>
         </div>
       </div>
     </section>
@@ -89,21 +89,19 @@
     <section class="panel">
       <div class="panel-header">
         <div>
-          <h2>Listado de pedidos</h2>
-          <p>Haz clic en un pedido para ver su detalle</p>
+          <h2>Listado de productos</h2>
+          <p>Haz clic en un producto para ver su detalle</p>
         </div>
       </div>
 
       <div class="filters">
-        <input type="text" id="searchOrder" placeholder="Buscar por cliente o ID pedido...">
+        <input type="text" id="searchProduct" placeholder="Buscar por nombre, artista o SKU...">
 
-        <select id="orderStatusFilter">
+        <select id="productStatusFilter">
           <option value="all">Todos los estados</option>
-          <option value="Pendiente">Pendiente</option>
-          <option value="Pagado">Pagado</option>
-          <option value="Enviado">Enviado</option>
-          <option value="Entregado">Entregado</option>
-          <option value="Cancelado">Cancelado</option>
+          <option value="Disponible">Disponible</option>
+          <option value="Stock bajo">Stock bajo</option>
+          <option value="Agotado">Agotado</option>
         </select>
       </div>
 
@@ -111,14 +109,16 @@
         <table>
           <thead>
             <tr>
-              <th>ID Pedido</th>
-              <th>Cliente</th>
-              <th>Fecha</th>
-              <th>Total</th>
+              <th>SKU</th>
+              <th>Producto</th>
+              <th>Artista</th>
+              <th>Género</th>
+              <th>Precio</th>
+              <th>Stock</th>
               <th>Estado</th>
             </tr>
           </thead>
-          <tbody id="ordersManagementTableBody"></tbody>
+          <tbody id="productsTableBody"></tbody>
         </table>
       </div>
     </section>
@@ -128,7 +128,7 @@
 </div>
 
 <script src="js/shared.js"></script>
-<script src="js/pedidos.js"></script>
+<script src="js/productos.js"></script>
 
 </body>
 </html>

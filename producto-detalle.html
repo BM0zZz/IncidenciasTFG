@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Detalle incidencia</title>
+  <title>Detalle producto - ViniloTFG Admin</title>
 
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/incidencia.css">
@@ -27,7 +27,7 @@
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
       <a href="clientes.html" class="nav-item">Clientes</a>
-      <a href="productos.html" class="nav-item">Productos</a>
+      <a href="productos.html" class="nav-item active">Productos</a>
       <a href="estadisticas.html" class="nav-item">Estadísticas</a>
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
@@ -45,32 +45,26 @@
 
   <main class="main-content">
 
-    <div id="incidentContent" style="display: none;">
-
+    <div id="productContent" style="display:none;">
       <div class="detail-topbar">
         <div>
           <p class="breadcrumb">
-            <a href="index.html">Dashboard</a> / Incidencia
+            <a href="index.html">Dashboard</a> / <a href="productos.html">Productos</a> / Detalle
           </p>
-          <h1 id="incidentTitle"></h1>
+          <h1 id="productTitle"></h1>
         </div>
 
         <div class="detail-actions-bar">
           <div class="status-change-box">
-            <label for="estadoSelect">Cambiar estado</label>
-            <select id="estadoSelect">
-              <option value="Abierta">Abierta</option>
-              <option value="En revisión">En revisión</option>
-              <option value="Resuelta">Resuelta</option>
-              <option value="Cerrada">Cerrada</option>
-            </select>
+            <label for="stockInput">Cambiar stock</label>
+            <input type="number" id="stockInput" min="0">
           </div>
 
-          <button class="secondary-btn" type="button" onclick="guardarEstado()">
-            Guardar estado
+          <button class="secondary-btn" type="button" onclick="guardarStockProducto()">
+            Guardar stock
           </button>
 
-          <button class="primary-btn" type="button" onclick="window.location.href='index.html'">
+          <button class="primary-btn" type="button" onclick="window.location.href='productos.html'">
             ← Volver
           </button>
         </div>
@@ -79,71 +73,72 @@
       <div class="detail-grid">
 
         <div class="panel">
-          <h2>Información</h2>
+          <h2>Información del producto</h2>
 
           <div class="detail-info-grid">
             <div class="detail-info-card">
-              <span>ID</span>
-              <h3 id="detailId"></h3>
+              <span>SKU</span>
+              <h3 id="detailProductSku"></h3>
             </div>
 
             <div class="detail-info-card">
-              <span>Cliente</span>
-              <h3 id="detailCliente"></h3>
+              <span>Producto</span>
+              <h3 id="detailProductNombre"></h3>
             </div>
 
             <div class="detail-info-card">
-              <span>Pedido</span>
-              <h3 id="detailPedido"></h3>
+              <span>Artista</span>
+              <h3 id="detailProductArtista"></h3>
             </div>
 
             <div class="detail-info-card">
-              <span>Tipo</span>
-              <h3 id="detailTipo"></h3>
+              <span>Género</span>
+              <h3 id="detailProductGenero"></h3>
             </div>
           </div>
 
           <div class="panel">
             <h3>Descripción</h3>
-            <p id="detailDescripcion"></p>
+            <p id="detailProductDescripcion"></p>
           </div>
 
           <div class="detail-meta-row">
-            <div class="meta-item" id="priorityBox">
-              <span>Prioridad</span>
+            <div class="meta-item">
+              <span>Precio</span>
+              <strong id="detailProductPrecio"></strong>
             </div>
 
-            <div class="meta-item" id="statusBox">
+            <div class="meta-item">
+              <span>Stock</span>
+              <strong id="detailProductStock"></strong>
+            </div>
+
+            <div class="meta-item" id="productStatusBox">
               <span>Estado</span>
             </div>
 
             <div class="meta-item">
-              <span>Fecha</span>
-              <strong id="detailFecha"></strong>
-            </div>
-
-            <div class="meta-item">
-              <span>Responsable</span>
-              <strong id="detailResponsable"></strong>
+              <span>Última actualización</span>
+              <strong id="detailProductFecha"></strong>
             </div>
           </div>
         </div>
 
         <div class="panel">
-          <h2>Historial</h2>
-          <div id="timelineContainer"></div>
+          <h2>Historial de stock</h2>
+          <div id="productTimelineContainer"></div>
         </div>
 
       </div>
     </div>
 
-    <div id="noIncidentMessage" class="panel" style="display: none; max-width: 700px;">
-      <h2 style="margin-bottom: 10px;">No hay ninguna incidencia seleccionada</h2>
+    <div id="noProductMessage" class="panel" style="display:none; max-width:700px;">
+      <h2 style="margin-bottom:10px;">No hay ningún producto seleccionado</h2>
       <p style="color:#a1a7b3; line-height:1.6; margin-bottom:20px;">
-        Para ver el detalle de una incidencia, vuelve al dashboard y haz clic sobre una incidencia de la tabla.
+        Para ver el detalle de un producto, vuelve al listado y haz clic sobre uno de la tabla.
       </p>
-      <button class="primary-btn" type="button" onclick="window.location.href='index.html'">
-        Ir al dashboard
+      <button class="primary-btn" type="button" onclick="window.location.href='productos.html'">
+        Ir a productos
       </button>
     </div>
 
@@ -152,7 +147,7 @@
 </div>
 
 <script src="js/shared.js"></script>
-<script src="js/incidencias.js"></script>
+<script src="js/productos.js"></script>
 
 </body>
 </html>
