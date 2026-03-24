@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Clientes - ViniloTFG Admin</title>
 
+  <!-- Hojas de estilo generales, del dashboard y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -13,7 +14,7 @@
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -25,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso a las distintas secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -34,6 +36,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Información básica del usuario logueado -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -45,9 +48,10 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- Contenido principal de la página -->
   <main class="main-content">
 
+    <!-- Encabezado de la sección -->
     <header class="topbar">
       <div>
         <h1>Gestión de clientes</h1>
@@ -55,7 +59,7 @@
       </div>
     </header>
 
-    <!-- CARDS -->
+    <!-- Tarjetas con estadísticas rápidas de clientes -->
     <section class="stats-grid">
       <div class="stat-card">
         <p>Clientes totales</p>
@@ -78,16 +82,18 @@
       </div>
     </section>
 
-    <!-- TABLA -->
+    <!-- Panel con listado de clientes -->
     <section class="panel">
       <div class="panel-header">
         <h2>Listado de clientes</h2>
       </div>
 
+      <!-- Campo para filtrar clientes por nombre -->
       <div class="filters">
         <input type="text" id="searchCliente" placeholder="Buscar cliente...">
       </div>
 
+      <!-- Tabla donde se cargarán los clientes dinámicamente -->
       <div class="table-container">
         <table>
           <thead>
@@ -107,6 +113,7 @@
 
 </div>
 
+<!-- Scripts compartidos y lógica específica de clientes -->
 <script src="js/shared.js"></script>
 <script src="js/clientes.js"></script>
 

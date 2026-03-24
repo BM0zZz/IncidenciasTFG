@@ -2,6 +2,7 @@
    CONFIGURACIÓN
 ========================= */
 
+/* Configuración por defecto */
 const defaultSettings = {
   adminName: "Víctor",
   adminEmail: "victor.admin@vinilotfg.com",
@@ -13,17 +14,21 @@ const defaultSettings = {
   notifyStock: true
 };
 
+/* Obtener configuración del localStorage */
 function getSettings() {
   return JSON.parse(localStorage.getItem("panelSettings")) || defaultSettings;
 }
 
+/* Guardar configuración en localStorage */
 function saveSettings(settings) {
   localStorage.setItem("panelSettings", JSON.stringify(settings));
 }
 
+/* Renderizar datos en la UI */
 function renderSettings() {
   const settings = getSettings();
 
+  /* Inputs */
   const adminName = document.getElementById("adminName");
   const adminEmail = document.getElementById("adminEmail");
   const adminRole = document.getElementById("adminRole");
@@ -33,6 +38,7 @@ function renderSettings() {
   const notifyOrders = document.getElementById("notifyOrders");
   const notifyStock = document.getElementById("notifyStock");
 
+  /* Asignar valores */
   if (adminName) adminName.value = settings.adminName;
   if (adminEmail) adminEmail.value = settings.adminEmail;
   if (adminRole) adminRole.value = settings.adminRole;
@@ -42,6 +48,7 @@ function renderSettings() {
   if (notifyOrders) notifyOrders.checked = settings.notifyOrders;
   if (notifyStock) notifyStock.checked = settings.notifyStock;
 
+  /* Labels resumen */
   const configUserName = document.getElementById("configUserName");
   const configThemeLabel = document.getElementById("configThemeLabel");
   const configNotificationLabel = document.getElementById("configNotificationLabel");
@@ -49,6 +56,7 @@ function renderSettings() {
   if (configUserName) configUserName.textContent = settings.adminName;
   if (configThemeLabel) configThemeLabel.textContent = settings.theme;
 
+  /* Contar notificaciones activas */
   const activeNotifications =
     [settings.notifyIncidents, settings.notifyOrders, settings.notifyStock].filter(Boolean).length;
 
@@ -56,13 +64,16 @@ function renderSettings() {
     configNotificationLabel.textContent = activeNotifications > 0 ? "Activadas" : "Desactivadas";
   }
 
+  /* Render resumen */
   renderConfigSummary(settings);
 }
 
+/* Crear resumen visual */
 function renderConfigSummary(settings) {
   const container = document.getElementById("configSummaryBoxes");
   if (!container) return;
 
+  /* Texto de notificaciones */
   const notificationsText =
     `${settings.notifyIncidents ? "Incidencias" : ""}` +
     `${settings.notifyIncidents && settings.notifyOrders ? ", " : ""}` +
@@ -70,6 +81,7 @@ function renderConfigSummary(settings) {
     `${(settings.notifyIncidents || settings.notifyOrders) && settings.notifyStock ? ", " : ""}` +
     `${settings.notifyStock ? "Stock" : ""}`;
 
+  /* Datos a mostrar */
   const boxes = [
     {
       titulo: "Perfil activo",
@@ -93,6 +105,7 @@ function renderConfigSummary(settings) {
     }
   ];
 
+  /* Pintar cajas */
   container.innerHTML = boxes.map(item => `
     <div class="summary-item">
       <h4>${item.titulo}</h4>
@@ -101,6 +114,7 @@ function renderConfigSummary(settings) {
   `).join("");
 }
 
+/* Formulario perfil */
 function bindProfileForm() {
   const form = document.getElementById("profileForm");
   if (!form) return;
@@ -118,6 +132,7 @@ function bindProfileForm() {
   });
 }
 
+/* Formulario preferencias */
 function bindPreferencesForm() {
   const form = document.getElementById("preferencesForm");
   if (!form) return;
@@ -131,10 +146,11 @@ function bindPreferencesForm() {
 
     saveSettings(settings);
     renderSettings();
-    applyTheme(settings.theme);
+    applyTheme(settings.theme); // aplicar tema
   });
 }
 
+/* Formulario notificaciones */
 function bindNotificationsForm() {
   const form = document.getElementById("notificationsForm");
   if (!form) return;
@@ -152,6 +168,7 @@ function bindNotificationsForm() {
   });
 }
 
+/* Formulario seguridad */
 function bindSecurityForm() {
   const form = document.getElementById("securityForm");
   if (!form) return;
@@ -163,6 +180,7 @@ function bindSecurityForm() {
     const newPassword = document.getElementById("newPassword").value;
     const repeatPassword = document.getElementById("repeatPassword").value;
 
+    /* Validaciones */
     if (!currentPassword || !newPassword || !repeatPassword) {
       alert("Completa todos los campos de seguridad.");
       return;
@@ -173,14 +191,15 @@ function bindSecurityForm() {
       return;
     }
 
+    /* Simulación cambio contraseña */
     alert("Contraseña actualizada correctamente.");
     form.reset();
   });
 }
 
 /* INIT */
-renderSettings();
-bindProfileForm();
-bindPreferencesForm();
-bindNotificationsForm();
-bindSecurityForm();
+renderSettings(); // cargar datos
+bindProfileForm(); // activar form perfil
+bindPreferencesForm(); // activar preferencias
+bindNotificationsForm(); // activar notificaciones
+bindSecurityForm(); // activar seguridad

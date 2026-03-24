@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Nueva incidencia</title>
 
+  <!-- Hojas de estilo generales y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/theme.css">
 </head>
@@ -12,7 +13,7 @@
 
 <div class="layout">
 
-  <!-- SIDEBAR -->
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -24,6 +25,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso al resto de secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -33,6 +35,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Información básica del usuario actual -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -44,10 +47,10 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- Contenido principal -->
   <main class="main-content">
 
-    <!-- HEADER -->
+    <!-- Cabecera de la página -->
     <div class="panel-header">
       <div>
         <h1>Nueva incidencia</h1>
@@ -55,12 +58,13 @@
       </div>
     </div>
 
-    <!-- FORM -->
+    <!-- Panel que contiene el formulario -->
     <div class="panel">
 
+      <!-- Formulario para crear una nueva incidencia -->
       <form id="formIncidencia">
 
-        <!-- GRID -->
+        <!-- Primera parte del formulario organizada en cuadrícula -->
         <div class="form-grid">
 
           <div>
@@ -90,19 +94,19 @@
 
         </div>
 
-        <!-- DESCRIPCIÓN -->
+        <!-- Campo de descripción del problema -->
         <div style="margin-top:20px;">
           <label>Descripción</label>
           <textarea id="descripcion" rows="5" required></textarea>
         </div>
 
-        <!-- RESPONSABLE -->
+        <!-- Campo para asignar un responsable -->
         <div style="margin-top:20px;">
           <label>Responsable</label>
           <input type="text" id="responsable">
         </div>
 
-        <!-- BOTONES -->
+        <!-- Botones de acción del formulario -->
         <div class="form-actions">
           <button type="submit" class="primary-btn">Guardar incidencia</button>
           <button type="button" class="secondary-btn" onclick="window.location.href='index.html'">
@@ -118,6 +122,7 @@
 
 </div>
 
+<!-- Script compartido y lógica específica de incidencias -->
 <script src="js/shared.js"></script>
 <script src="js/incidencias.js"></script>
 

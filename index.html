@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ViniloTFG Admin - Incidencias</title>
+
+  <!-- Hojas de estilo principales del sistema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -11,7 +13,7 @@
 <body>
   <div class="layout">
     
-    <!-- SIDEBAR -->
+    <!-- Barra lateral de navegación -->
     <aside class="sidebar">
       <div class="sidebar-top">
         <div class="logo-box">
@@ -23,6 +25,7 @@
         </div>
       </div>
 
+      <!-- Menú lateral con acceso a las distintas secciones -->
       <nav class="sidebar-nav">
         <a href="index.html" class="nav-item active">Dashboard</a>
         <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -32,6 +35,7 @@
         <a href="configuracion.html" class="nav-item">Configuración</a>
       </nav>
 
+      <!-- Información del usuario actual -->
       <div class="sidebar-bottom">
         <div class="user-card">
           <div class="user-avatar">V</div>
@@ -46,13 +50,14 @@
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
       
-      <!-- TOPBAR -->
+      <!-- Cabecera del dashboard -->
       <header class="topbar">
         <div>
           <h1>Dashboard de incidencias</h1>
           <p>Resumen general de pedidos, incidencias y actividad reciente</p>
         </div>
 
+        <!-- Acción principal para crear una nueva incidencia -->
         <div class="topbar-actions">
           <button class="primary-btn" onclick="window.location.href='nueva-incidencia.html'">
                 + Nueva incidencia
@@ -60,7 +65,7 @@
         </div>
       </header>
 
-      <!-- TARJETAS RESUMEN -->
+      <!-- Tarjetas con resumen rápido de métricas -->
       <section class="stats-grid">
         <div class="stat-card">
           <div class="stat-info">
@@ -95,7 +100,7 @@
         </div>
       </section>
 
-      <!-- BLOQUE INCIDENCIAS -->
+      <!-- BLOQUE DE GESTIÓN DE INCIDENCIAS -->
       <section class="panel">
         <div class="panel-header">
           <div>
@@ -104,7 +109,7 @@
           </div>
         </div>
 
-        <!-- FILTROS -->
+        <!-- Filtros para buscar y clasificar incidencias -->
         <div class="filters">
           <input type="text" id="searchIncident" placeholder="Buscar por cliente o ID..." />
           
@@ -125,7 +130,7 @@
           </select>
         </div>
 
-        <!-- TABLA INCIDENCIAS -->
+        <!-- Tabla donde se cargan las incidencias dinámicamente -->
         <div class="table-container">
           <table>
             <thead>
@@ -140,13 +145,13 @@
               </tr>
             </thead>
             <tbody id="incidentTableBody">
-              <!-- JS -->
+              <!-- Contenido generado por JavaScript -->
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- BLOQUE PEDIDOS RECIENTES -->
+      <!-- BLOQUE DE PEDIDOS RECIENTES Y RESUMEN -->
       <section class="bottom-grid">
         <div class="panel">
           <div class="panel-header">
@@ -156,6 +161,7 @@
             </div>
           </div>
 
+          <!-- Tabla con los últimos pedidos -->
           <div class="table-container">
             <table>
               <thead>
@@ -168,12 +174,13 @@
                 </tr>
               </thead>
               <tbody id="ordersTableBody">
-                <!-- JS -->
+                <!-- Contenido generado por JavaScript -->
               </tbody>
             </table>
           </div>
         </div>
 
+        <!-- Panel de resumen rápido del sistema -->
         <div class="panel">
           <div class="panel-header">
             <div>
@@ -209,6 +216,7 @@
     </main>
   </div>
 
+  <!-- Scripts compartidos y específicos del dashboard -->
   <script src="js/shared.js"></script>
   <script src="js/incidencias.js"></script>
   <script src="js/pedidos.js"></script>

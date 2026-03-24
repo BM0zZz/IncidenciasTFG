@@ -1,30 +1,38 @@
+/* RESET GENERAL:
+   Limpia estilos por defecto del navegador y define base global */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Hace más fácil calcular tamaños */
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Scroll suave al navegar entre secciones */
 html {
   scroll-behavior: smooth;
 }
 
+/* Estilo base de la página (tema oscuro) */
 body {
   background-color: #111315;
   color: #f3f4f6;
 }
 
+/* Enlaces sin subrayado y heredando color */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* CONTENEDOR PRINCIPAL:
+   Divide la pantalla en sidebar + contenido */
 .layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* SIDEBAR:
+   Menú lateral fijo con estructura vertical */
 .sidebar {
   width: 280px;
   min-width: 280px;
@@ -34,21 +42,24 @@ a {
   flex-direction: column;
   justify-content: flex-start;
   padding: 24px 18px;
-  position: sticky;
+  position: sticky; /* Se queda fija al hacer scroll */
   top: 0;
   height: 100vh;
 }
 
+/* Separación superior (logo/zona inicial) */
 .sidebar-top {
   margin-bottom: 28px;
 }
 
+/* Contenedor del logo + texto */
 .logo-box {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
+/* Círculo visual del logo con degradado */
 .logo-circle {
   width: 44px;
   height: 44px;
@@ -58,6 +69,7 @@ a {
   flex-shrink: 0;
 }
 
+/* Detalle interior del logo (efecto punto) */
 .logo-circle::after {
   content: "";
   width: 12px;
@@ -69,39 +81,45 @@ a {
   left: 16px;
 }
 
+/* Texto principal del logo */
 .logo-box h2 {
   font-size: 18px;
   margin-bottom: 4px;
   line-height: 1.2;
 }
 
+/* Subtexto del logo */
 .logo-box p {
   color: #a1a7b3;
   font-size: 13px;
 }
 
+/* MENÚ DE NAVEGACIÓN */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* Elemento de menú */
 .nav-item {
   text-decoration: none;
   color: #d5d9e2;
   padding: 14px 16px;
   border-radius: 14px;
-  transition: 0.25s ease;
+  transition: 0.25s ease; /* Animaciones suaves */
   font-size: 15px;
   font-weight: 500;
 }
 
+/* Hover: pequeño desplazamiento y cambio de fondo */
 .nav-item:hover {
   background-color: #222833;
   color: #ffffff;
   transform: translateX(2px);
 }
 
+/* Item activo (seleccionado) */
 .nav-item.active {
   background: linear-gradient(135deg, #7c5cff, #5a3fe0);
   color: white;
@@ -109,11 +127,13 @@ a {
   box-shadow: 0 10px 24px rgba(124, 92, 255, 0.22);
 }
 
+/* ZONA INFERIOR SIDEBAR (usuario) */
 .sidebar-bottom {
-  margin-top: auto;
+  margin-top: auto; /* Empuja al fondo */
   padding-top: 24px;
 }
 
+/* Filas clicables (tablas, listas, etc.) */
 .clickable-row {
   cursor: pointer;
 }
@@ -123,6 +143,7 @@ a {
   transform: scale(1.01);
 }
 
+/* TARJETA DE USUARIO */
 .user-card {
   background-color: #20242c;
   border: 1px solid #2a2f38;
@@ -133,6 +154,7 @@ a {
   gap: 12px;
 }
 
+/* Avatar circular del usuario */
 .user-avatar {
   width: 42px;
   height: 42px;
@@ -144,23 +166,25 @@ a {
   font-weight: bold;
 }
 
+/* Nombre usuario */
 .user-card h4 {
   font-size: 15px;
   margin-bottom: 2px;
 }
 
+/* Info secundaria usuario */
 .user-card p {
   font-size: 13px;
   color: #a1a7b3;
 }
 
-/* MAIN */
+/* CONTENIDO PRINCIPAL */
 .main-content {
-  flex: 1;
+  flex: 1; /* Ocupa el resto del espacio */
   padding: 30px 32px;
 }
 
-/* BOTONES */
+/* BOTONES PRINCIPALES */
 .primary-btn {
   background: linear-gradient(135deg, #7c5cff, #5a3fe0);
   border: none;
@@ -173,15 +197,18 @@ a {
   box-shadow: 0 10px 24px rgba(124, 92, 255, 0.18);
 }
 
+/* Hover botón principal */
 .primary-btn:hover {
   transform: translateY(-1px);
   opacity: 0.96;
 }
 
+/* Click botón */
 .primary-btn:active {
   transform: translateY(0);
 }
 
+/* BOTÓN SECUNDARIO */
 .secondary-btn {
   background-color: #20242c;
   border: 1px solid #2a2f38;
@@ -197,7 +224,7 @@ a {
   background-color: #252b34;
 }
 
-/* PANEL */
+/* PANEL (tarjetas/contenedores principales) */
 .panel {
   background: linear-gradient(180deg, #181b20 0%, #15181d 100%);
   border: 1px solid #2a2f38;
@@ -207,6 +234,7 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
+/* Cabecera del panel */
 .panel-header {
   display: flex;
   justify-content: space-between;
@@ -214,12 +242,14 @@ a {
   margin-bottom: 18px;
 }
 
+/* Título del panel */
 .panel-header h2 {
   font-size: 22px;
   margin-bottom: 6px;
   line-height: 1.2;
 }
 
+/* Subtítulo/descripción */
 .panel-header p {
   color: #a1a7b3;
   font-size: 14px;
@@ -228,7 +258,7 @@ a {
 
 /* TABLAS */
 .table-container {
-  overflow-x: auto;
+  overflow-x: auto; /* Scroll horizontal si hace falta */
   border-radius: 16px;
 }
 
@@ -237,10 +267,12 @@ table {
   border-collapse: collapse;
 }
 
+/* Cabecera tabla */
 thead {
   background-color: #20242c;
 }
 
+/* Celdas */
 th,
 td {
   text-align: left;
@@ -250,15 +282,18 @@ td {
   vertical-align: middle;
 }
 
+/* Encabezados */
 th {
   color: #d8deea;
   font-weight: 700;
 }
 
+/* Contenido */
 td {
   color: #f3f4f6;
 }
 
+/* Hover filas */
 tbody tr {
   transition: 0.2s ease;
 }
@@ -267,7 +302,8 @@ tbody tr:hover {
   background-color: #1e232b;
 }
 
-/* BADGES */
+/* BADGES:
+   Etiquetas de estado/prioridad */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -279,75 +315,21 @@ tbody tr:hover {
   white-space: nowrap;
 }
 
-.badge-open {
-  background-color: rgba(255, 77, 79, 0.15);
-  color: #ff6b6b;
-}
+/* Diferentes estados visuales */
+.badge-open { background-color: rgba(255, 77, 79, 0.15); color: #ff6b6b; }
+.badge-review { background-color: rgba(255, 193, 7, 0.15); color: #ffd166; }
+.badge-resolved { background-color: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.badge-closed { background-color: rgba(148, 163, 184, 0.15); color: #cbd5e1; }
+.badge-low { background-color: rgba(100, 116, 139, 0.15); color: #cbd5e1; }
+.badge-medium { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.badge-high { background-color: rgba(249, 115, 22, 0.15); color: #fb923c; }
+.badge-urgent { background-color: rgba(239, 68, 68, 0.15); color: #f87171; }
+.badge-pending { background-color: rgba(250, 204, 21, 0.15); color: #facc15; }
+.badge-paid { background-color: rgba(34, 197, 94, 0.15); color: #4ade80; }
+.badge-shipped { background-color: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+.badge-delivered { background-color: rgba(16, 185, 129, 0.15); color: #34d399; }
 
-.badge-review {
-  background-color: rgba(255, 193, 7, 0.15);
-  color: #ffd166;
-}
-
-.badge-resolved {
-  background-color: rgba(34, 197, 94, 0.15);
-  color: #4ade80;
-}
-
-.badge-closed {
-  background-color: rgba(148, 163, 184, 0.15);
-  color: #cbd5e1;
-}
-
-.badge-low {
-  background-color: rgba(100, 116, 139, 0.15);
-  color: #cbd5e1;
-}
-
-.badge-medium {
-  background-color: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-}
-
-.badge-high {
-  background-color: rgba(249, 115, 22, 0.15);
-  color: #fb923c;
-}
-
-.badge-urgent {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-}
-
-.badge-pending {
-  background-color: rgba(250, 204, 21, 0.15);
-  color: #facc15;
-}
-
-.badge-paid {
-  background-color: rgba(34, 197, 94, 0.15);
-  color: #4ade80;
-}
-
-.badge-shipped {
-  background-color: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-}
-
-.badge-delivered {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-}
-
-.clickable-row {
-  cursor: pointer;
-}
-
-.clickable-row:hover {
-  background-color: #232832 !important;
-}
-
-/* SCROLLBAR */
+/* SCROLL PERSONALIZADO */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -366,10 +348,11 @@ tbody tr:hover {
   background: #3a4150;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE:
+   Adaptación a tablet/móvil */
 @media (max-width: 1024px) {
   .layout {
-    flex-direction: column;
+    flex-direction: column; /* Sidebar arriba */
   }
 
   .sidebar {
@@ -390,6 +373,7 @@ tbody tr:hover {
   }
 }
 
+/* Ajustes móviles */
 @media (max-width: 700px) {
   .main-content {
     padding: 18px;
@@ -404,8 +388,8 @@ tbody tr:hover {
     padding: 14px 12px;
   }
 }
-/* FORMULARIOS */
 
+/* FORMULARIOS */
 form label {
   display: block;
   margin-bottom: 10px;
@@ -414,6 +398,7 @@ form label {
   font-weight: 500;
 }
 
+/* Inputs, selects y textarea */
 form input,
 form select,
 form textarea {
@@ -429,11 +414,13 @@ form textarea {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
+/* Placeholder */
 form input::placeholder,
 form textarea::placeholder {
   color: #9aa3b2;
 }
 
+/* Focus en inputs */
 form input:focus,
 form select:focus,
 form textarea:focus {
@@ -444,23 +431,27 @@ form textarea:focus {
   background-color: #252c39;
 }
 
+/* Grid de formulario */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
 
+/* Textarea */
 textarea {
   resize: vertical;
   min-height: 160px;
 }
 
+/* Botones del formulario */
 .form-actions {
   margin-top: 30px;
   display: flex;
   gap: 12px;
 }
 
+/* Responsive formulario */
 @media (max-width: 900px) {
   .form-grid {
     grid-template-columns: 1fr;

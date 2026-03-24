@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Pedidos - ViniloTFG Admin</title>
 
+  <!-- Hojas de estilo generales, del dashboard y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -13,6 +14,7 @@
 
 <div class="layout">
 
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso a las distintas secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item active">Pedidos</a>
@@ -33,6 +36,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Información del usuario actual -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -44,8 +48,10 @@
     </div>
   </aside>
 
+  <!-- Contenido principal -->
   <main class="main-content">
 
+    <!-- Cabecera de la sección -->
     <header class="topbar">
       <div>
         <h1>Gestión de pedidos</h1>
@@ -53,6 +59,7 @@
       </div>
     </header>
 
+    <!-- Tarjetas con estadísticas rápidas de pedidos -->
     <section class="stats-grid">
       <div class="stat-card">
         <div class="stat-info">
@@ -87,6 +94,7 @@
       </div>
     </section>
 
+    <!-- Panel principal con el listado de pedidos -->
     <section class="panel">
       <div class="panel-header">
         <div>
@@ -95,6 +103,7 @@
         </div>
       </div>
 
+      <!-- Filtros para buscar y clasificar pedidos -->
       <div class="filters">
         <input type="text" id="searchOrder" placeholder="Buscar por cliente o ID pedido...">
 
@@ -108,6 +117,7 @@
         </select>
       </div>
 
+      <!-- Tabla donde se cargarán los pedidos dinámicamente -->
       <div class="table-container">
         <table>
           <thead>
@@ -128,6 +138,7 @@
 
 </div>
 
+<!-- Script compartido y lógica específica de pedidos -->
 <script src="js/shared.js"></script>
 <script src="js/pedidos.js"></script>
 

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Estadísticas - ViniloTFG Admin</title>
 
+  <!-- Hojas de estilo generales, del dashboard y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/dashboard.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -13,6 +14,7 @@
 
 <div class="layout">
 
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso a todas las secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -33,6 +36,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Información del usuario actual -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -44,8 +48,10 @@
     </div>
   </aside>
 
+  <!-- Contenido principal -->
   <main class="main-content">
 
+    <!-- Encabezado de la sección -->
     <header class="topbar">
       <div>
         <h1>Estadísticas generales</h1>
@@ -53,6 +59,7 @@
       </div>
     </header>
 
+    <!-- Tarjetas con métricas principales -->
     <section class="stats-grid">
       <div class="stat-card">
         <div class="stat-info">
@@ -87,6 +94,7 @@
       </div>
     </section>
 
+    <!-- Bloque con resumen de estados de pedidos e incidencias -->
     <section class="bottom-grid">
       <div class="panel">
         <div class="panel-header">
@@ -96,6 +104,7 @@
           </div>
         </div>
 
+        <!-- Contenedor donde se insertan dinámicamente los datos -->
         <div class="summary-boxes" id="orderStatsBoxes"></div>
       </div>
 
@@ -107,10 +116,12 @@
           </div>
         </div>
 
+        <!-- Contenedor dinámico de incidencias -->
         <div class="summary-boxes" id="incidentStatsBoxes"></div>
       </div>
     </section>
 
+    <!-- Tablas con rankings de clientes y productos -->
     <section class="bottom-grid">
       <div class="panel">
         <div class="panel-header">
@@ -120,6 +131,7 @@
           </div>
         </div>
 
+        <!-- Tabla que se rellena con JS -->
         <div class="table-container">
           <table>
             <thead>
@@ -142,6 +154,7 @@
           </div>
         </div>
 
+        <!-- Tabla de productos más relevantes -->
         <div class="table-container">
           <table>
             <thead>
@@ -157,6 +170,7 @@
       </div>
     </section>
 
+    <!-- Resumen general del sistema -->
     <section class="panel">
       <div class="panel-header">
         <div>
@@ -165,6 +179,7 @@
         </div>
       </div>
 
+      <!-- Contenedor dinámico con métricas adicionales -->
       <div class="summary-boxes" id="operationalSummary"></div>
     </section>
 
@@ -172,6 +187,7 @@
 
 </div>
 
+<!-- Scripts compartidos y lógica específica de estadísticas -->
 <script src="js/shared.js"></script>
 <script src="js/estadisticas.js"></script>
 

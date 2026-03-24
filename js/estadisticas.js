@@ -2,11 +2,13 @@
    ESTADÍSTICAS
 ========================= */
 
+/* Obtener datos de clientes combinando pedidos e incidencias */
 function getClientesStatsData() {
-  const orders = getAllOrders();
-  const incidents = getAllIncidents();
-  const map = {};
+  const orders = getAllOrders(); // pedidos
+  const incidents = getAllIncidents(); // incidencias
+  const map = {}; // agrupador de clientes
 
+  /* Contar pedidos por cliente */
   orders.forEach(order => {
     if (!map[order.cliente]) {
       map[order.cliente] = {
@@ -18,6 +20,7 @@ function getClientesStatsData() {
     map[order.cliente].pedidos++;
   });
 
+  /* Contar incidencias por cliente */
   incidents.forEach(incident => {
     if (!map[incident.cliente]) {
       map[incident.cliente] = {
@@ -29,20 +32,23 @@ function getClientesStatsData() {
     map[incident.cliente].incidencias++;
   });
 
-  return Object.values(map);
+  return Object.values(map); // devolver array
 }
 
+/* Render estadísticas generales */
 function renderGeneralStats() {
   const orders = getAllOrders();
   const incidents = getAllIncidents();
   const products = getAllProducts();
   const clientes = getClientesStatsData();
 
+  /* Cálculos */
   const pedidosPendientes = orders.filter(o => o.estado === "Pendiente").length;
   const incidenciasAbiertas = incidents.filter(i => i.estado === "Abierta" || i.estado === "En revisión").length;
   const productosActivos = products.filter(p => p.stock > 0).length;
   const clientesConPedidos = clientes.filter(c => c.pedidos > 0).length;
 
+  /* Pintar en DOM */
   document.getElementById("statsPedidosTotales").textContent = orders.length;
   document.getElementById("statsPedidosResumen").textContent = `${pedidosPendientes} pendientes`;
 
@@ -56,6 +62,7 @@ function renderGeneralStats() {
   document.getElementById("statsProductosResumen").textContent = `${productosActivos} disponibles`;
 }
 
+/* Render cajas de estado de pedidos */
 function renderOrderStatsBoxes() {
   const orders = getAllOrders();
   const container = document.getElementById("orderStatsBoxes");
@@ -69,6 +76,7 @@ function renderOrderStatsBoxes() {
     { titulo: "Cancelados", valor: orders.filter(o => o.estado === "Cancelado").length, texto: "Pedidos cancelados o anulados." }
   ];
 
+  /* Pintar cajas */
   container.innerHTML = stats.map(item => `
     <div class="summary-item">
       <h4>${item.titulo}: ${item.valor}</h4>
@@ -77,6 +85,7 @@ function renderOrderStatsBoxes() {
   `).join("");
 }
 
+/* Render cajas de estado de incidencias */
 function renderIncidentStatsBoxes() {
   const incidents = getAllIncidents();
   const container = document.getElementById("incidentStatsBoxes");
@@ -89,6 +98,7 @@ function renderIncidentStatsBoxes() {
     { titulo: "Cerradas", valor: incidents.filter(i => i.estado === "Cerrada").length, texto: "Casos finalizados sin acciones pendientes." }
   ];
 
+  /* Pintar cajas */
   container.innerHTML = stats.map(item => `
     <div class="summary-item">
       <h4>${item.titulo}: ${item.valor}</h4>
@@ -97,6 +107,7 @@ function renderIncidentStatsBoxes() {
   `).join("");
 }
 
+/* Top clientes por pedidos */
 function renderTopClientes() {
   const clientes = getClientesStatsData()
     .sort((a, b) => b.pedidos - a.pedidos)
@@ -114,6 +125,7 @@ function renderTopClientes() {
   `).join("");
 }
 
+/* Top productos por stock */
 function renderTopProductos() {
   const products = getAllProducts()
     .sort((a, b) => b.stock - a.stock)
@@ -123,7 +135,7 @@ function renderTopProductos() {
   if (!table) return;
 
   table.innerHTML = products.map(product => {
-    const status = getProductStatus(product.stock);
+    const status = getProductStatus(product.stock); // estado según stock
     return `
       <tr>
         <td>${product.nombre}</td>
@@ -134,6 +146,7 @@ function renderTopProductos() {
   }).join("");
 }
 
+/* Resumen operativo general */
 function renderOperationalSummary() {
   const orders = getAllOrders();
   const incidents = getAllIncidents();
@@ -142,6 +155,7 @@ function renderOperationalSummary() {
   const container = document.getElementById("operationalSummary");
   if (!container) return;
 
+  /* Cálculos */
   const stockBajo = products.filter(p => p.stock > 0 && p.stock < 5).length;
   const agotados = products.filter(p => p.stock === 0).length;
   const conIncidencia = orders.filter(o => o.incidencia && o.incidencia !== "Sin incidencia").length;
@@ -175,6 +189,7 @@ function renderOperationalSummary() {
     }
   ];
 
+  /* Pintar bloques */
   container.innerHTML = bloques.map(item => `
     <div class="summary-item">
       <h4>${item.titulo}</h4>
@@ -184,9 +199,9 @@ function renderOperationalSummary() {
 }
 
 /* INIT */
-renderGeneralStats();
-renderOrderStatsBoxes();
-renderIncidentStatsBoxes();
-renderTopClientes();
-renderTopProductos();
-renderOperationalSummary();
+renderGeneralStats(); // stats principales
+renderOrderStatsBoxes(); // pedidos
+renderIncidentStatsBoxes(); // incidencias
+renderTopClientes(); // top clientes
+renderTopProductos(); // top productos
+renderOperationalSummary(); // resumen global

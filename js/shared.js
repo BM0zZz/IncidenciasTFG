@@ -2,6 +2,7 @@
    DATOS BASE COMPARTIDOS
 ========================= */
 
+/* Incidencias base del sistema */
 const baseIncidents = [
   {
     id: "INC-001",
@@ -163,6 +164,7 @@ const baseIncidents = [
   }
 ];
 
+/* Pedidos base del sistema */
 const baseOrders = [
   {
     id: "PED-3024",
@@ -266,6 +268,7 @@ const baseOrders = [
   }
 ];
 
+/* Productos base del sistema */
 const baseProducts = [
   {
     sku: "VIN-001",
@@ -358,14 +361,17 @@ const baseProducts = [
    HELPERS LOCALSTORAGE
 ========================= */
 
+/* Obtener incidencias guardadas */
 function getSavedIncidents() {
   return JSON.parse(localStorage.getItem("incidencias")) || [];
 }
 
+/* Guardar incidencias */
 function saveUserIncidents(updated) {
   localStorage.setItem("incidencias", JSON.stringify(updated));
 }
 
+/* Mezclar incidencias base y guardadas */
 function getAllIncidents() {
   const saved = getSavedIncidents();
   const savedIds = new Set(saved.map(item => item.id));
@@ -373,14 +379,17 @@ function getAllIncidents() {
   return [...baseFiltered, ...saved];
 }
 
+/* Obtener pedidos guardados */
 function getSavedOrders() {
   return JSON.parse(localStorage.getItem("pedidos")) || [];
 }
 
+/* Guardar pedidos */
 function saveUserOrders(updated) {
   localStorage.setItem("pedidos", JSON.stringify(updated));
 }
 
+/* Mezclar pedidos base y guardados */
 function getAllOrders() {
   const saved = getSavedOrders();
   const savedIds = new Set(saved.map(item => item.id));
@@ -388,14 +397,17 @@ function getAllOrders() {
   return [...baseFiltered, ...saved];
 }
 
+/* Obtener productos guardados */
 function getSavedProducts() {
   return JSON.parse(localStorage.getItem("productos")) || [];
 }
 
+/* Guardar productos */
 function saveUserProducts(updated) {
   localStorage.setItem("productos", JSON.stringify(updated));
 }
 
+/* Mezclar productos base y guardados */
 function getAllProducts() {
   const saved = getSavedProducts();
   const savedSkus = new Set(saved.map(item => item.sku));
@@ -407,6 +419,7 @@ function getAllProducts() {
    HELPERS VISUALES
 ========================= */
 
+/* Clase CSS para estado de incidencia */
 function getStatusClass(status) {
   switch (status) {
     case "Abierta":
@@ -422,6 +435,7 @@ function getStatusClass(status) {
   }
 }
 
+/* Clase CSS para prioridad */
 function getPriorityClass(priority) {
   switch (priority) {
     case "Baja":
@@ -437,6 +451,7 @@ function getPriorityClass(priority) {
   }
 }
 
+/* Clase CSS para estado de pedido */
 function getOrderStatusClass(status) {
   switch (status) {
     case "Pendiente":
@@ -454,12 +469,14 @@ function getOrderStatusClass(status) {
   }
 }
 
+/* Texto de estado según stock */
 function getProductStatus(stock) {
   if (stock === 0) return "Agotado";
   if (stock < 5) return "Stock bajo";
   return "Disponible";
 }
 
+/* Clase CSS para estado de producto */
 function getProductStatusClass(status) {
   switch (status) {
     case "Disponible":
@@ -473,10 +490,12 @@ function getProductStatusClass(status) {
   }
 }
 
+/* Formatear precio */
 function formatPriceNumber(value) {
   return `${Number(value).toFixed(2)} €`;
 }
 
+/* Crear HTML de un item del timeline */
 function createTimelineItem(item) {
   return `
     <div class="timeline-item">
@@ -491,6 +510,7 @@ function createTimelineItem(item) {
    TEMA
 ========================= */
 
+/* Aplicar modo claro u oscuro */
 function applyTheme(theme) {
   if (theme === "Claro") {
     document.body.classList.add("light-theme");
@@ -499,14 +519,57 @@ function applyTheme(theme) {
   }
 }
 
+/* Obtener configuración general del panel */
 function getPanelSettings() {
   return JSON.parse(localStorage.getItem("panelSettings")) || {};
 }
 
+/* Inicializar tema al cargar la página */
 function initTheme() {
   const settings = getPanelSettings();
   const savedTheme = settings.theme || "Oscuro";
   applyTheme(savedTheme);
 }
 
+/* Ejecutar tema al cargar el DOM */
 document.addEventListener("DOMContentLoaded", initTheme);
+
+/* =========================
+   LOGIN / PROTECCIÓN
+========================= */
+
+function protectPage() {
+
+  // Nombre del archivo actual
+  const currentPage = window.location.pathname.split("/").pop();
+
+  // Si estamos en login, no bloquear
+  if (currentPage === "login.html" || currentPage === "") return;
+
+  // Comprobamos si hay sesión
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  // Si no hay sesión → fuera
+  if (isLoggedIn !== "true") {
+    window.location.href = "login.html";
+  }
+}
+
+// Ejecutar al cargar
+document.addEventListener("DOMContentLoaded", protectPage);
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+  // Borra la sesión
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("loggedUserEmail");
+
+  // Redirige al login
+  window.location.href = "login.html";
+}
+
+// Lo hacemos global para poder usarlo en HTML
+window.logout = logout;

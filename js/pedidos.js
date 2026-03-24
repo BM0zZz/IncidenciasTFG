@@ -2,22 +2,26 @@
    PEDIDOS
 ========================= */
 
+/* Referencias DOM */
 const ordersTableBody = document.getElementById("ordersTableBody");
 const ordersManagementTableBody = document.getElementById("ordersManagementTableBody");
 const searchOrder = document.getElementById("searchOrder");
 const orderStatusFilter = document.getElementById("orderStatusFilter");
 
+/* Render pedidos recientes (dashboard) */
 function renderOrdersRecent() {
   if (!ordersTableBody) return;
 
   const orders = getAllOrders();
   ordersTableBody.innerHTML = "";
 
+  /* Solo los 4 primeros */
   orders.slice(0, 4).forEach((order) => {
     const row = document.createElement("tr");
     row.classList.add("clickable-row");
     row.title = "Ver detalle del pedido";
 
+    /* Contenido fila */
     row.innerHTML = `
       <td>${order.id}</td>
       <td>${order.cliente}</td>
@@ -26,6 +30,7 @@ function renderOrdersRecent() {
       <td><span class="${getOrderStatusClass(order.estado)}">${order.estado}</span></td>
     `;
 
+    /* Click → guardar ID y redirigir */
     row.addEventListener("click", () => {
       localStorage.setItem("selectedOrderId", order.id);
       window.location.href = "pedido-detalle.html";
@@ -35,6 +40,7 @@ function renderOrdersRecent() {
   });
 }
 
+/* Render listado completo de pedidos */
 function renderOrdersManagement(data) {
   if (!ordersManagementTableBody) return;
 
@@ -45,6 +51,7 @@ function renderOrdersManagement(data) {
     row.classList.add("clickable-row");
     row.title = "Ver detalle de pedido";
 
+    /* Contenido fila */
     row.innerHTML = `
       <td>${order.id}</td>
       <td>${order.cliente}</td>
@@ -53,6 +60,7 @@ function renderOrdersManagement(data) {
       <td><span class="${getOrderStatusClass(order.estado)}">${order.estado}</span></td>
     `;
 
+    /* Click  detalle */
     row.addEventListener("click", () => {
       localStorage.setItem("selectedOrderId", order.id);
       window.location.href = "pedido-detalle.html";
@@ -62,6 +70,7 @@ function renderOrdersManagement(data) {
   });
 }
 
+/* Filtros pedidos */
 function filterOrders() {
   if (!searchOrder || !orderStatusFilter) return;
 
@@ -70,17 +79,21 @@ function filterOrders() {
   const statusValue = orderStatusFilter.value;
 
   const filtered = allOrders.filter((order) => {
+    /* Buscar por ID o cliente */
     const matchesSearch =
       order.id.toLowerCase().includes(searchValue) ||
       order.cliente.toLowerCase().includes(searchValue);
 
+    /* Filtrar por estado */
     const matchesStatus = statusValue === "all" || order.estado === statusValue;
+
     return matchesSearch && matchesStatus;
   });
 
   renderOrdersManagement(filtered);
 }
 
+/* Render detalle pedido */
 function renderOrderDetail() {
   const orderContent = document.getElementById("orderContent");
   const noOrderMessage = document.getElementById("noOrderMessage");
@@ -91,6 +104,7 @@ function renderOrderDetail() {
 
   const selectedOrderId = localStorage.getItem("selectedOrderId");
 
+  /* Si no hay pedido seleccionado */
   if (!selectedOrderId) {
     orderContent.style.display = "none";
     noOrderMessage.style.display = "block";
@@ -99,15 +113,18 @@ function renderOrderDetail() {
 
   const order = getAllOrders().find(item => item.id === selectedOrderId);
 
+  /* Si no existe */
   if (!order) {
     orderContent.style.display = "none";
     noOrderMessage.style.display = "block";
     return;
   }
 
+  /* Mostrar contenido */
   orderContent.style.display = "block";
   noOrderMessage.style.display = "none";
 
+  /* Rellenar datos */
   orderTitle.textContent = order.id;
   document.getElementById("detailOrderId").textContent = order.id;
   document.getElementById("detailOrderCliente").textContent = order.cliente;
@@ -117,6 +134,7 @@ function renderOrderDetail() {
   document.getElementById("detailOrderPago").textContent = order.pago;
   document.getElementById("detailOrderIncidencia").textContent = order.incidencia;
 
+  /* Badge estado */
   const pedidoEstadoBox = document.getElementById("pedidoEstadoBox");
   if (pedidoEstadoBox) {
     pedidoEstadoBox.innerHTML = `
@@ -125,10 +143,12 @@ function renderOrderDetail() {
     `;
   }
 
+  /* Select estado */
   if (pedidoEstadoSelect) {
     pedidoEstadoSelect.value = order.estado;
   }
 
+  /* Lista productos */
   const orderProductsList = document.getElementById("orderProductsList");
   if (orderProductsList) {
     orderProductsList.innerHTML = `
@@ -138,12 +158,14 @@ function renderOrderDetail() {
     `;
   }
 
+  /* Historial */
   const orderTimelineContainer = document.getElementById("orderTimelineContainer");
   if (orderTimelineContainer) {
     orderTimelineContainer.innerHTML = order.historial.map(createTimelineItem).join("");
   }
 }
 
+/* Guardar cambio de estado */
 function guardarEstadoPedido() {
   const selectedOrderId = localStorage.getItem("selectedOrderId");
   const pedidoEstadoSelect = document.getElementById("pedidoEstadoSelect");
@@ -154,26 +176,33 @@ function guardarEstadoPedido() {
   const saved = getSavedOrders();
   const savedIndex = saved.findIndex(item => item.id === selectedOrderId);
 
+  /* Si ya está guardado */
   if (savedIndex !== -1) {
     if (saved[savedIndex].estado !== nuevoEstado) {
       saved[savedIndex].estado = nuevoEstado;
+
+      /* Añadir historial */
       saved[savedIndex].historial.push({
         titulo: "Estado actualizado",
         fecha: new Date().toLocaleString(),
         texto: `El pedido ha cambiado a estado "${nuevoEstado}".`
       });
+
       saveUserOrders(saved);
     }
     renderOrderDetail();
     return;
   }
 
+  /* Si es base */
   const base = baseOrders.find(item => item.id === selectedOrderId);
   if (!base) return;
 
   const copy = JSON.parse(JSON.stringify(base));
+
   if (copy.estado !== nuevoEstado) {
     copy.estado = nuevoEstado;
+
     copy.historial.push({
       titulo: "Estado actualizado",
       fecha: new Date().toLocaleString(),
@@ -187,12 +216,16 @@ function guardarEstadoPedido() {
 }
 
 /* INIT */
+
+/* Dashboard */
 renderOrdersRecent();
 
+/* Página pedidos */
 if (ordersManagementTableBody) {
   renderOrdersManagement(getAllOrders());
 }
 
+/* Filtros */
 if (searchOrder) {
   searchOrder.addEventListener("input", filterOrders);
 }
@@ -200,6 +233,8 @@ if (orderStatusFilter) {
   orderStatusFilter.addEventListener("change", filterOrders);
 }
 
+/* Detalle */
 renderOrderDetail();
 
+/* Exponer función */
 window.guardarEstadoPedido = guardarEstadoPedido;

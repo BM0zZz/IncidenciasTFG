@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Detalle producto - ViniloTFG Admin</title>
 
+  <!-- Hojas de estilo generales, del detalle y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/incidencia.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -13,6 +14,7 @@
 
 <div class="layout">
 
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso a las distintas secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -33,6 +36,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Información del usuario actual -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -44,8 +48,10 @@
     </div>
   </aside>
 
+  <!-- Contenido principal -->
   <main class="main-content">
 
+    <!-- Contenedor principal del detalle, visible solo si hay producto seleccionado -->
     <div id="productContent" style="display:none;">
       <div class="detail-topbar">
         <div>
@@ -55,6 +61,7 @@
           <h1 id="productTitle"></h1>
         </div>
 
+        <!-- Acciones rápidas para modificar stock o volver -->
         <div class="detail-actions-bar">
           <div class="status-change-box">
             <label for="stockInput">Cambiar stock</label>
@@ -71,11 +78,14 @@
         </div>
       </div>
 
+      <!-- Estructura principal del detalle -->
       <div class="detail-grid">
 
+        <!-- Panel con la información general del producto -->
         <div class="panel">
           <h2>Información del producto</h2>
 
+          <!-- Datos principales del producto -->
           <div class="detail-info-grid">
             <div class="detail-info-card">
               <span>SKU</span>
@@ -98,11 +108,13 @@
             </div>
           </div>
 
+          <!-- Descripción del producto -->
           <div class="panel">
             <h3>Descripción</h3>
             <p id="detailProductDescripcion"></p>
           </div>
 
+          <!-- Información complementaria -->
           <div class="detail-meta-row">
             <div class="meta-item">
               <span>Precio</span>
@@ -125,6 +137,7 @@
           </div>
         </div>
 
+        <!-- Panel con el historial de cambios de stock -->
         <div class="panel">
           <h2>Historial de stock</h2>
           <div id="productTimelineContainer"></div>
@@ -133,6 +146,7 @@
       </div>
     </div>
 
+    <!-- Mensaje alternativo cuando no hay producto seleccionado -->
     <div id="noProductMessage" class="panel" style="display:none; max-width:700px;">
       <h2 style="margin-bottom:10px;">No hay ningún producto seleccionado</h2>
       <p style="color:#a1a7b3; line-height:1.6; margin-bottom:20px;">
@@ -147,6 +161,7 @@
 
 </div>
 
+<!-- Script compartido y lógica específica de productos -->
 <script src="js/shared.js"></script>
 <script src="js/productos.js"></script>
 

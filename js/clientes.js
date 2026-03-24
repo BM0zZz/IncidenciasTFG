@@ -2,26 +2,30 @@
    CLIENTES
 ========================= */
 
+/* Referencias al DOM */
 const clientesTable = document.getElementById("clientesTable");
 const searchCliente = document.getElementById("searchCliente");
 
+/* Obtener lista de clientes a partir de pedidos e incidencias */
 function getClientes() {
-  const orders = getAllOrders();
-  const incidents = getAllIncidents();
-  const clientesMap = {};
+  const orders = getAllOrders(); // obtiene pedidos
+  const incidents = getAllIncidents(); // obtiene incidencias
+  const clientesMap = {}; // objeto para agrupar clientes
 
+  /* Recorrer pedidos */
   orders.forEach(order => {
     if (!clientesMap[order.cliente]) {
       clientesMap[order.cliente] = {
         nombre: order.cliente,
-        email: order.cliente.toLowerCase().replace(/\s+/g, ".") + "@gmail.com",
+        email: order.cliente.toLowerCase().replace(/\s+/g, ".") + "@gmail.com", // generar email fake
         pedidos: 0,
         incidencias: 0
       };
     }
-    clientesMap[order.cliente].pedidos++;
+    clientesMap[order.cliente].pedidos++; // sumar pedido
   });
 
+  /* Recorrer incidencias */
   incidents.forEach(inc => {
     if (!clientesMap[inc.cliente]) {
       clientesMap[inc.cliente] = {
@@ -31,16 +35,17 @@ function getClientes() {
         incidencias: 0
       };
     }
-    clientesMap[inc.cliente].incidencias++;
+    clientesMap[inc.cliente].incidencias++; // sumar incidencia
   });
 
-  return Object.values(clientesMap);
+  return Object.values(clientesMap); // devolver array de clientes
 }
 
+/* Pintar tabla de clientes */
 function renderClientes(data) {
-  if (!clientesTable) return;
+  if (!clientesTable) return; // evitar error si no existe
 
-  clientesTable.innerHTML = "";
+  clientesTable.innerHTML = ""; // limpiar tabla
 
   data.forEach(cliente => {
     const row = document.createElement("tr");
@@ -50,14 +55,15 @@ function renderClientes(data) {
       <td>${cliente.pedidos}</td>
       <td>${cliente.incidencias}</td>
     `;
-    clientesTable.appendChild(row);
+    clientesTable.appendChild(row); // añadir fila
   });
 }
 
+/* Pintar estadísticas de clientes */
 function renderClientesStats(clientes) {
-  const total = clientes.length;
-  const activos = clientes.filter(c => c.pedidos > 0).length;
-  const conInc = clientes.filter(c => c.incidencias > 0).length;
+  const total = clientes.length; // total clientes
+  const activos = clientes.filter(c => c.pedidos > 0).length; // con pedidos
+  const conInc = clientes.filter(c => c.incidencias > 0).length; // con incidencias
 
   const totalClientes = document.getElementById("totalClientes");
   const clientesActivos = document.getElementById("clientesActivos");
@@ -68,25 +74,27 @@ function renderClientesStats(clientes) {
   if (clientesIncidencias) clientesIncidencias.textContent = conInc;
 }
 
+/* Filtrar clientes por búsqueda */
 function filterClientes() {
   if (!searchCliente) return;
 
   const clientes = getClientes();
-  const search = searchCliente.value.toLowerCase();
+  const search = searchCliente.value.toLowerCase(); // texto buscado
 
   const filtered = clientes.filter(c =>
     c.nombre.toLowerCase().includes(search) ||
     c.email.toLowerCase().includes(search)
   );
 
-  renderClientes(filtered);
+  renderClientes(filtered); // renderizar filtrados
 }
 
 /* INIT */
-const clientes = getClientes();
-renderClientes(clientes);
-renderClientesStats(clientes);
+const clientes = getClientes(); // obtener clientes
+renderClientes(clientes); // pintar tabla
+renderClientesStats(clientes); // pintar estadísticas
 
+/* Evento de búsqueda */
 if (searchCliente) {
   searchCliente.addEventListener("input", filterClientes);
 }

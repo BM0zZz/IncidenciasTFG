@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Detalle incidencia</title>
 
+  <!-- Hojas de estilo generales, específicas del detalle y del tema -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/incidencia.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -13,6 +14,7 @@
 
 <div class="layout">
 
+  <!-- Barra lateral de navegación -->
   <aside class="sidebar">
     <div class="sidebar-top">
       <div class="logo-box">
@@ -24,6 +26,7 @@
       </div>
     </div>
 
+    <!-- Menú lateral con acceso al resto de secciones -->
     <nav class="sidebar-nav">
       <a href="index.html" class="nav-item">Dashboard</a>
       <a href="pedidos.html" class="nav-item">Pedidos</a>
@@ -33,6 +36,7 @@
       <a href="configuracion.html" class="nav-item">Configuración</a>
     </nav>
 
+    <!-- Tarjeta con la información del usuario -->
     <div class="sidebar-bottom">
       <div class="user-card">
         <div class="user-avatar">V</div>
@@ -44,10 +48,13 @@
     </div>
   </aside>
 
+  <!-- Contenido principal -->
   <main class="main-content">
 
+    <!-- Contenedor principal del detalle, visible solo si hay incidencia seleccionada -->
     <div id="incidentContent" style="display: none;">
 
+      <!-- Cabecera del detalle de incidencia -->
       <div class="detail-topbar">
         <div>
           <p class="breadcrumb">
@@ -56,6 +63,7 @@
           <h1 id="incidentTitle"></h1>
         </div>
 
+        <!-- Acciones rápidas para cambiar estado o volver -->
         <div class="detail-actions-bar">
           <div class="status-change-box">
             <label for="estadoSelect">Cambiar estado</label>
@@ -77,11 +85,14 @@
         </div>
       </div>
 
+      <!-- Estructura principal del detalle -->
       <div class="detail-grid">
 
+        <!-- Panel de información general -->
         <div class="panel">
           <h2>Información</h2>
 
+          <!-- Datos principales de la incidencia -->
           <div class="detail-info-grid">
             <div class="detail-info-card">
               <span>ID</span>
@@ -104,11 +115,13 @@
             </div>
           </div>
 
+          <!-- Descripción del problema -->
           <div class="panel">
             <h3>Descripción</h3>
             <p id="detailDescripcion"></p>
           </div>
 
+          <!-- Información complementaria -->
           <div class="detail-meta-row">
             <div class="meta-item" id="priorityBox">
               <span>Prioridad</span>
@@ -130,6 +143,7 @@
           </div>
         </div>
 
+        <!-- Panel con el historial de la incidencia -->
         <div class="panel">
           <h2>Historial</h2>
           <div id="timelineContainer"></div>
@@ -138,6 +152,7 @@
       </div>
     </div>
 
+    <!-- Mensaje alternativo cuando no hay incidencia seleccionada -->
     <div id="noIncidentMessage" class="panel" style="display: none; max-width: 700px;">
       <h2 style="margin-bottom: 10px;">No hay ninguna incidencia seleccionada</h2>
       <p style="color:#a1a7b3; line-height:1.6; margin-bottom:20px;">
@@ -152,6 +167,7 @@
 
 </div>
 
+<!-- Script compartido y lógica específica de incidencias -->
 <script src="js/shared.js"></script>
 <script src="js/incidencias.js"></script>
 

@@ -1,3 +1,4 @@
+/* Barra superior del detalle (título + acciones) */
 .detail-topbar {
   display: flex;
   justify-content: space-between;
@@ -6,23 +7,27 @@
   margin-bottom: 28px;
 }
 
+/* Breadcrumb (ruta tipo Dashboard / Incidencia) */
 .breadcrumb {
   color: #7f8794;
   font-size: 14px;
   margin-bottom: 10px;
 }
 
+/* Links del breadcrumb */
 .breadcrumb a {
   color: #7c5cff;
   text-decoration: underline;
 }
 
+/* Título principal */
 .detail-topbar h1 {
   font-size: 32px;
   margin-bottom: 8px;
   line-height: 1.15;
 }
 
+/* Grid principal (info + lateral) */
 .detail-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -30,6 +35,7 @@
   align-items: start;
 }
 
+/* Grid de datos principales */
 .detail-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -38,6 +44,7 @@
   margin-bottom: 22px;
 }
 
+/* Tarjetas de información */
 .detail-info-card {
   background-color: #20242c;
   border: 1px solid #2a2f38;
@@ -45,6 +52,7 @@
   padding: 18px;
 }
 
+/* Label de cada dato */
 .detail-info-card span {
   display: block;
   color: #a1a7b3;
@@ -52,11 +60,13 @@
   margin-bottom: 8px;
 }
 
+/* Valor de cada dato */
 .detail-info-card h3 {
   font-size: 20px;
   line-height: 1.3;
 }
 
+/* Títulos dentro de panel */
 .detail-grid .panel h2 {
   font-size: 22px;
   margin-bottom: 8px;
@@ -67,10 +77,12 @@
   margin-bottom: 12px;
 }
 
+/* Texto de panel */
 .detail-grid .panel p {
   line-height: 1.6;
 }
 
+/* Panel dentro de panel */
 .detail-grid .panel > .panel {
   margin-top: 8px;
   margin-bottom: 0;
@@ -78,11 +90,13 @@
   box-shadow: none;
 }
 
+/* Descripción */
 #detailDescripcion {
   color: #e5e7eb;
   font-size: 14px;
 }
 
+/* Contenedor historial */
 #timelineContainer {
   display: flex;
   flex-direction: column;
@@ -90,6 +104,7 @@
   margin-top: 16px;
 }
 
+/* Item del timeline */
 .timeline-item {
   position: relative;
   padding-left: 22px;
@@ -97,6 +112,7 @@
   padding-bottom: 4px;
 }
 
+/* Punto del timeline */
 .timeline-item::before {
   content: "";
   width: 12px;
@@ -108,11 +124,13 @@
   top: 2px;
 }
 
+/* Título evento */
 .timeline-item h4 {
   font-size: 15px;
   margin-bottom: 4px;
 }
 
+/* Fecha evento */
 .timeline-item span {
   display: block;
   color: #7f8794;
@@ -120,11 +138,14 @@
   margin-bottom: 6px;
 }
 
+/* Texto evento */
 .timeline-item p {
   color: #cbd2dd;
   font-size: 14px;
   line-height: 1.6;
 }
+
+/* Barra de acciones (botones + selector) */
 .detail-actions-bar {
   display: flex;
   align-items: flex-end;
@@ -132,6 +153,7 @@
   flex-wrap: wrap;
 }
 
+/* Contenedor selector estado */
 .status-change-box {
   display: flex;
   flex-direction: column;
@@ -139,12 +161,14 @@
   min-width: 220px;
 }
 
+/* Label selector */
 .status-change-box label {
   font-size: 14px;
   color: #a1a7b3;
   font-weight: 600;
 }
 
+/* Select estado */
 .status-change-box select {
   width: 100%;
   background-color: #202632;
@@ -157,12 +181,14 @@
   transition: 0.2s ease;
 }
 
+/* Focus select */
 .status-change-box select:focus {
   border-color: #7c5cff;
   box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.16);
   background-color: #252c39;
 }
 
+/* Responsive acciones */
 @media (max-width: 800px) {
   .detail-actions-bar {
     flex-direction: column;
@@ -174,12 +200,14 @@
   }
 }
 
+/* Responsive grid */
 @media (max-width: 1200px) {
   .detail-grid {
     grid-template-columns: 1fr;
   }
 }
 
+/* Responsive general */
 @media (max-width: 800px) {
   .detail-topbar {
     flex-direction: column;
@@ -194,6 +222,8 @@
     font-size: 26px;
   }
 }
+
+/* (Repetido) Barra de acciones */
 .detail-actions-bar {
   display: flex;
   align-items: flex-end;
@@ -201,6 +231,7 @@
   flex-wrap: wrap;
 }
 
+/* (Repetido) Selector */
 .status-change-box {
   display: flex;
   flex-direction: column;
@@ -208,12 +239,14 @@
   min-width: 220px;
 }
 
+/* (Repetido) Label */
 .status-change-box label {
   font-size: 14px;
   color: #a1a7b3;
   font-weight: 600;
 }
 
+/* (Repetido) Select */
 .status-change-box select {
   width: 100%;
   background-color: #202632;
@@ -226,12 +259,14 @@
   transition: 0.2s ease;
 }
 
+/* (Repetido) Focus */
 .status-change-box select:focus {
   border-color: #7c5cff;
   box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.16);
   background-color: #252c39;
 }
 
+/* (Repetido) Responsive */
 @media (max-width: 800px) {
   .detail-actions-bar {
     flex-direction: column;
