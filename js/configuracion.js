@@ -63,6 +63,13 @@ function renderConfigSummary(settings) {
   const container = document.getElementById("configSummaryBoxes");
   if (!container) return;
 
+  const notificationsText =
+    `${settings.notifyIncidents ? "Incidencias" : ""}` +
+    `${settings.notifyIncidents && settings.notifyOrders ? ", " : ""}` +
+    `${settings.notifyOrders ? "Pedidos" : ""}` +
+    `${(settings.notifyIncidents || settings.notifyOrders) && settings.notifyStock ? ", " : ""}` +
+    `${settings.notifyStock ? "Stock" : ""}`;
+
   const boxes = [
     {
       titulo: "Perfil activo",
@@ -82,7 +89,7 @@ function renderConfigSummary(settings) {
     },
     {
       titulo: "Notificaciones",
-      texto: `${settings.notifyIncidents ? "Incidencias" : ""}${settings.notifyIncidents && settings.notifyOrders ? ", " : ""}${settings.notifyOrders ? "Pedidos" : ""}${(settings.notifyIncidents || settings.notifyOrders) && settings.notifyStock ? ", " : ""}${settings.notifyStock ? "Stock" : ""}` || "No hay notificaciones activas."
+      texto: notificationsText || "No hay notificaciones activas."
     }
   ];
 
@@ -124,6 +131,7 @@ function bindPreferencesForm() {
 
     saveSettings(settings);
     renderSettings();
+    applyTheme(settings.theme);
   });
 }
 
@@ -166,7 +174,6 @@ function bindSecurityForm() {
     }
 
     alert("Contraseña actualizada correctamente.");
-
     form.reset();
   });
 }

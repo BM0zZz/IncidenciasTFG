@@ -486,3 +486,27 @@ function createTimelineItem(item) {
     </div>
   `;
 }
+
+/* =========================
+   TEMA
+========================= */
+
+function applyTheme(theme) {
+  if (theme === "Claro") {
+    document.body.classList.add("light-theme");
+  } else {
+    document.body.classList.remove("light-theme");
+  }
+}
+
+function getPanelSettings() {
+  return JSON.parse(localStorage.getItem("panelSettings")) || {};
+}
+
+function initTheme() {
+  const settings = getPanelSettings();
+  const savedTheme = settings.theme || "Oscuro";
+  applyTheme(savedTheme);
+}
+
+document.addEventListener("DOMContentLoaded", initTheme);
